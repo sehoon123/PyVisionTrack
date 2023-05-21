@@ -4,12 +4,12 @@ PyVisionTrack is a Python-based object tracking project that utilizes OpenCV to 
 
 ## Features
 
-- Multiple tracking algorithms: PyVisionTrack offers a variety of tracking algorithms, including (but not limited to) KCF, MOSSE, and CSRT. Choose the algorithm that best suits your tracking requirements.
+- Multiple tracking algorithms: Offers a variety of tracking algorithms, including (but not limited to) KCF, MOSSE, and CSRT. Choose the algorithm that best suits your tracking requirements.
 - Real-time object tracking: Track objects in real-time from video files or live camera feeds.
 - Customizable parameters: Fine-tune tracking parameters such as the tracking window size, padding, and more, to achieve optimal tracking performance.
 - Object detection and initialization: Utilize object detection techniques (e.g., Haar cascades, deep learning-based detectors) to detect and initialize object tracking.
 - Multiple object tracking: Track multiple objects simultaneously, each with its own tracking algorithm and parameters.
-- Interactive graphical interface: PyVisionTrack provides an optional graphical interface for interactive object selection and visualization.
+- Interactive graphical interface: Provides an optional graphical interface for interactive object selection and visualization.
 
 ## Week 1: Project Setup and Basic Functionality
 ### Objective: Set up the project structure and environment for PyVisionTrack.
