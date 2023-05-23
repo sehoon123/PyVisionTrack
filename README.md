@@ -65,11 +65,17 @@ PyWhiteboard is a Python-based application that enables you to use your hand ges
 
 ## References
 
-1. [OpenCV: Open Source Computer Vision Library](https://opencv.org/)
-    - OpenCV is a powerful computer vision library that provides various algorithms and tools for image and video processing, including object tracking.
-
-2. [Mediapipe](https://developers.google.com/mediapipe)
+1. [Mediapipe](https://developers.google.com/mediapipe)
     - Mediapipe is a cross-platform framework for building multimodal applied machine learning pipelines. It offers a variety of prebuilt solutions for computer vision tasks, such as hand tracking.
     
-3. [Youtube](https://youtu.be/01sAkU_NvOY?list=LL)
+2. [Youtube](https://youtu.be/01sAkU_NvOY?list=LL)
     - freeCodeCamp.org Youtube channel
+
+3. [Youtube](https://youtu.be/ZiwZaAVbXQo?list=LL)
+    - Murtaza's Workshop Youtube channel
+
+4. [ChatGPT](https://chat.openai.com/)
+    - OpenAI's GPT-4 powered chatbot
+
+## Screenshots
+

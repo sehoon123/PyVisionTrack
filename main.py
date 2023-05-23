@@ -9,7 +9,7 @@ def run_whiteboard():
     recognizer = GestureRecognizer(detection_confidence=0.8)
 
     # Initialize the video capture object
-    cap = cv2.VideoCapture(1)
+    cap = cv2.VideoCapture(0)
     cap.set(3, 1280)
     cap.set(4, 720)
 
