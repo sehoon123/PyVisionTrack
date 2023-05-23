@@ -2,7 +2,7 @@ import mediapipe as mp
 import cv2
 
 class GestureRecognizer:
-    def __init__(self, enable_tracking=False, max_hands=2, detection_confidence=0.5, tracking_confidence=0.5):
+    def __init__(self, enable_tracking=False, max_hands=1, detection_confidence=0.5, tracking_confidence=0.8):
         self.enable_tracking = enable_tracking
         self.max_hands = max_hands
         self.detection_confidence = detection_confidence

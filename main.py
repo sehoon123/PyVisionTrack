@@ -24,8 +24,6 @@ def run_whiteboard():
     brush_size = 5
     eraser_size = 40
 
-
-
     # Color data
     color_data = [
         (0, 0, 100, 100, (0, 0, 255)),  # Red
@@ -51,7 +49,6 @@ def run_whiteboard():
 
         positions = recognizer.get_hand_position(frame)
         up_fingers = recognizer.count_up_fingers(frame)
-
 
         # initialize x, y position
         x, y = 0, 0
@@ -103,7 +100,7 @@ def run_whiteboard():
         pen_size_bar_y = 0
         pen_size_bar_width = 100
         pen_size_bar_height = 600
-        pen_size_bar_color = (50, 50, 50)
+        pen_size_bar_color = color  # Use the selected pen color
 
         # Calculate the current pen size based on finger position
         if x >= pen_size_bar_x and x <= pen_size_bar_x + pen_size_bar_width:
@@ -111,8 +108,8 @@ def run_whiteboard():
             brush_size = int(progress * 20) + 5  # Adjust the pen size range as needed
 
         # Draw pen size progress bar
-        cv2.rectangle(frame, (pen_size_bar_x, pen_size_bar_y), (pen_size_bar_x + pen_size_bar_width, pen_size_bar_y + pen_size_bar_height), pen_size_bar_color, -1)
-        cv2.rectangle(frame, (pen_size_bar_x, pen_size_bar_y), (pen_size_bar_x + pen_size_bar_width, int(pen_size_bar_y + pen_size_bar_height * brush_size / 25)), (0, 255, 0), -1)  # Highlight the selected pen size based on brush_size
+        cv2.rectangle(frame, (pen_size_bar_x, pen_size_bar_y), (pen_size_bar_x + pen_size_bar_width, pen_size_bar_y + pen_size_bar_height), (0,0,0), -1)
+        cv2.rectangle(frame, (pen_size_bar_x, pen_size_bar_y), (pen_size_bar_x + pen_size_bar_width, int(pen_size_bar_y + pen_size_bar_height * brush_size / 25)), pen_size_bar_color, -1)  # Highlight the selected pen size based on brush_size
 
         # Display current pen size value
         pen_size_text = f"Pen Size: {brush_size}"
