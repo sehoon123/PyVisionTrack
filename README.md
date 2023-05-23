@@ -78,7 +78,6 @@ PyWhiteboard is a Python-based application that enables you to use your hand ges
     - OpenAI's GPT-4 powered chatbot
 
 ## Video Demo
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/bjYpP-FvfRE" frameborder="0" allowfullscreen></iframe>
+<iframe width="1708" height="767" src="https://www.youtube.com/embed/bjYpP-FvfRE" title="pywhiteboard demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
