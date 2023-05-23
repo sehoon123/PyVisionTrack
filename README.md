@@ -1,64 +1,75 @@
-# PyVisionTrack
+# PyWhiteboard
 
-PyVisionTrack is a Python-based object tracking project that utilizes OpenCV to enable real-time object tracking in videos or camera feeds. This project provides a flexible and intuitive framework for developers to track objects with ease.
+PyWhiteboard is a Python-based application that enables you to use your hand gestures to draw and create art on a virtual whiteboard.
 
 ## Features
-
-- Multiple tracking algorithms: Offers a variety of tracking algorithms, including (but not limited to) KCF, MOSSE, and CSRT. Choose the algorithm that best suits your tracking requirements.
-- Real-time object tracking: Track objects in real-time from video files or live camera feeds.
-- Customizable parameters: Fine-tune tracking parameters such as the tracking window size, padding, and more, to achieve optimal tracking performance.
-- Object detection and initialization: Utilize object detection techniques (e.g., Haar cascades, deep learning-based detectors) to detect and initialize object tracking.
-- Multiple object tracking: Track multiple objects simultaneously, each with its own tracking algorithm and parameters.
-- Interactive graphical interface: Provides an optional graphical interface for interactive object selection and visualization.
+- Hand gesture recognition: Tracks your hand movements in real-time using computer vision techniques and recognizes gestures for drawing on the whiteboard.
+- Multi-color drawing: Offers a variety of colors to choose from for drawing on the canvas, including red, blue, green, yellow, and an eraser option.
+- Adjustable brush size: Allows you to adjust the brush size based on the position of your finger, providing control over the thickness of your drawings.
+- Clear canvas option: Provides a clear canvas button to reset the whiteboard and start fresh.
+- Real-time drawing visualization: Displays your drawings and hand movements in real-time, creating an interactive and engaging drawing experience.
 
 ## Week 1: Project Setup and Basic Functionality
-### Objective: Set up the project structure and environment for PyVisionTrack.
+### Objective: Set up the project structure and environment for PyWhiteboard.
 
 - Create a new Python project and set up a virtual environment.
 - Initialize a Git repository and connect it to a remote repository on GitHub.
-- Install the necessary dependencies, including OpenCV and any other required libraries.
+- Install the necessary dependencies, including OpenCV, Mediapipe, and any other required libraries.
 
-### Objective: Implement the basic functionality of object tracking.
+### Objective: Implement the basic functionality of PyWhiteboard.
 
 - Set up the main script or entry point for the application.
-- Load video files or connect to the camera feed for real-time tracking.
-- Implement a simple tracking algorithm (e.g., KCF) to track a single object.
-- Display the tracked object or bounding box on the video feed.
+- Initialize the camera or video feed for real-time hand tracking.
+- Implement hand tracking using computer vision techniques and the Mediapipe library.
+- Enable gesture recognition for drawing on the whiteboard.
+- Display the canvas and the user's hand movements in real-time.
 
-## Week 2: Advanced Tracking Algorithms and Customization
-### Objective: Integrate additional tracking algorithms.
+## Week 2: Enhancing Drawing Features and User Interaction
+### Objective: Improve drawing functionality.
 
-- Research and select other tracking algorithms supported by OpenCV (e.g., MOSSE, CSRT).
-- Implement multiple tracking algorithms and provide the option to choose between them.
-- Evaluate the performance and accuracy of each algorithm and document the findings.
+- Implement multi-color drawing by allowing the user to select different colors for drawing on the canvas.
+- Create color selection boxes and map each box to a specific color.
+- Update the drawing logic to utilize the selected color when tracking hand movements.
 
-### Objective: Implement object detection and initialization.
+### Objective: Implement brush size adjustment.
 
-- Explore object detection techniques (e.g., Haar cascades, deep learning-based detectors) and choose one to integrate.
-- Implement object detection to automatically initialize the object tracking process.
-- Fine-tune the object detection parameters to improve accuracy and robustness.
+- Add a pen size bar or slider to the user interface.
+- Allow the user to adjust the brush size based on the position of their finger along the pen size bar/slider.
+- Update the drawing logic to use the adjusted brush size for the drawings.
 
-### Objective: Allow customization of tracking parameters.
+### Objective: Enhance user interaction.
 
-- Implement a configuration system that allows users to adjust tracking parameters (e.g., window size, padding).
-- Provide an interface or command-line options to customize these parameters.
+- Implement a clear canvas button to reset the whiteboard and remove all drawings.
+- Handle user input or gestures for interacting with the clear canvas button.
+- Provide visual feedback or confirmation to the user when the canvas is cleared.
 
-## Week 3: User Interface and Refinement
-### Objective: Develop an interactive graphical interface (optional).
+## Week 3: Refinement and Testing
+### Objective: Refine the user interface and overall experience.
 
-- Design and implement a user-friendly graphical interface for PyVisionTrack.
-- Enable object selection by clicking or drawing bounding boxes on the video feed.
-- Integrate controls to switch between tracking algorithms and adjust parameters.
+- Improve the visual appearance of the user interface, including color boxes, pen size bar, and clear canvas button.
+- Optimize the layout and placement of UI elements for better usability.
+- Incorporate user feedback and make necessary adjustments to enhance the overall user experience.
 
-### Objective: Refine the project and conduct testing.
+### Objective: Perform thorough testing and debugging.
 
-- Perform extensive testing and debugging to ensure the stability and reliability of PyVisionTrack.
-- Optimize the codebase for efficiency and performance.
-- Conduct thorough documentation of the project, including a README file and inline code comments.
+- Test the application with various hand movements and gestures to ensure accurate tracking and drawing functionality.
+- Identify and fix any bugs or issues encountered during testing.
+- Optimize the codebase for performance and efficiency.
 
-### Objective: Finalize the project and prepare for deployment.
+### Objective: Documentation and Finalization
 
-- Review the project code, clean up any redundant or unused code.
-- Update the README file with comprehensive project documentation, including installation instructions and usage examples.
-- Ensure all licensing and attribution requirements are met.
-- Create a release version and prepare for deployment.
+- Update the README file with comprehensive project documentation, including installation instructions, usage examples, and any additional information.
+- Review and revise the project documentation for clarity and completeness.
+- Perform a final code review, clean up any redundant or unused code, and ensure proper code formatting and commenting.
+- Prepare the project for deployment and create a release version.
+
+## References
+
+1. [OpenCV: Open Source Computer Vision Library](https://opencv.org/)
+    - OpenCV is a powerful computer vision library that provides various algorithms and tools for image and video processing, including object tracking.
+
+2. [Mediapipe](https://developers.google.com/mediapipe)
+    - Mediapipe is a cross-platform framework for building multimodal applied machine learning pipelines. It offers a variety of prebuilt solutions for computer vision tasks, such as hand tracking.
+    
+3. [Youtube](https://youtu.be/01sAkU_NvOY?list=LL)
+    - freeCodeCamp.org Youtube channel
