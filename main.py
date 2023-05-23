@@ -1,34 +1,32 @@
 import cv2
 import numpy as np
-import time
 from Box import Box
-from WhiteBoard import WhiteBoard
 from GestureRecognizer import GestureRecognizer
 
 
 def run_whiteboard():
-    # Initialize the hand detector
-    detector = GestureRecognizer(detection_confidence=0.8)
+    # Initialize the gesture recognizer
+    recognizer = GestureRecognizer(detection_confidence=0.8)
 
-    # Initialize the camera
+    # Initialize the video capture object
     cap = cv2.VideoCapture(1)
     cap.set(3, 1280)
     cap.set(4, 720)
 
-    # Creating canvas to draw on
+    # create a canvas
     canvas = np.zeros((720, 1280, 3), np.uint8)
 
-    # Define a previous point to be used with drawing a line
+    # Previous x and y points
     px, py = 0, 0
 
-    # Initial brush color
+    # Default drawing color
     color = (255, 0, 0)
     brush_size = 5
-    eraser_size = 20
+    eraser_size = 40
 
-    ########### creating colors ########
 
-    # Define color data
+
+    # Color data
     color_data = [
         (0, 0, 100, 100, (0, 0, 255)),  # Red
         (0, 100, 100, 100, (255, 0, 0)),  # Blue
@@ -40,16 +38,8 @@ def run_whiteboard():
     # Create color boxes
     colors = [Box(*data) for data in color_data]
 
-    # Clear
-    clear = Box(0, 500, 100, 100, (100, 100, 100), "Clear")
-
-    ########## pen sizes #######
-    pens = []
-    for i, pen_size in enumerate(range(5, 25, 5)):
-        pens.append(Box(1180, 50 + 100 * i, 100, 100, (50, 50, 50), str(pen_size)))
-
-    pen_btn = Box(1180, 0, 100, 50, color, 'Pen')
-
+    # Create clear box
+    clear = Box(0, 620, 100, 100, (100, 100, 100), "Clear")
 
     while True:
         ret, frame = cap.read()
@@ -57,47 +47,30 @@ def run_whiteboard():
             break
         frame = cv2.resize(frame, (1280, 720))
         frame = cv2.flip(frame, 1)
+        frame = recognizer.detect_hands(frame)
 
-        # Call detect_hands method first
-        frame = detector.detect_hands(frame)
+        positions = recognizer.get_hand_position(frame)
+        up_fingers = recognizer.count_up_fingers(frame)
 
-        positions = detector.get_hand_position(frame)
-        up_fingers = detector.count_up_fingers(frame)
+
+        # initialize x, y position
+        x, y = 0, 0
 
         if up_fingers:
             x, y = positions[8][0], positions[8][1]
             if up_fingers[1] and up_fingers[2]:
                 px, py = 0, 0
 
-                ##### Pen sizes ######
-                for pen in pens:
-                    if pen.is_over(x, y):
-                        brush_size = int(pen.text)
-                        pen.alpha = 0
-                    else:
-                        pen.alpha = 0.5
-
-                ####### Choose a color for drawing #######
+                # Select color
                 for cb in colors:
                     if cb.is_over(x, y):
                         color = cb.color
-                        cb.alpha = 0
-                    else:
-                        cb.alpha = 0.5
 
-                # Clear
+                # clear the canvas
                 if clear.is_over(x, y):
-                    clear.alpha = 0
                     canvas = np.zeros((720, 1280, 3), np.uint8)
-                else:
-                    clear.alpha = 0.5
 
-                # Pen size button
-                if pen_btn.is_over(x, y):
-                    pen_btn.alpha = 0
-                else:
-                    pen_btn.alpha = 0.5
-
+            # Draw with index finger
             elif up_fingers[1] and not up_fingers[2]:
                 if px != 0 and py != 0:
                     cv2.line(canvas, (px, py), (x, y), color, brush_size)
@@ -106,19 +79,18 @@ def run_whiteboard():
             else:
                 px, py = 0, 0
 
-        # Check if all fingers are open
-        all_fingers_open = all(up_fingers)
-        if all_fingers_open and positions:
+        # clear the canvas when middle finger is up
+        if up_fingers and up_fingers[2] and not up_fingers[1] and positions:
             canvas = np.zeros((720, 1280, 3), np.uint8)
 
-        # Put the white board on the frame
+        # merge the canvas and the frame
         canvas_gray = cv2.cvtColor(canvas, cv2.COLOR_BGR2GRAY)
         _, img_inv = cv2.threshold(canvas_gray, 20, 255, cv2.THRESH_BINARY_INV)
         img_inv = cv2.cvtColor(img_inv, cv2.COLOR_GRAY2BGR)
         frame = cv2.bitwise_and(frame, img_inv)
         frame = cv2.bitwise_or(frame, canvas)
 
-        ########## Pen colors' boxes #########
+        # Draw the color boxes
         for c in colors:
             c.draw_rect(frame)
             cv2.rectangle(frame, (c.x, c.y), (c.x + c.w, c.y + c.h), (0, 0, 0), 2)
@@ -126,20 +98,31 @@ def run_whiteboard():
         clear.draw_rect(frame)
         cv2.rectangle(frame, (clear.x, clear.y), (clear.x + clear.w, clear.y + clear.h), (0, 0, 0), 2)
 
-        ########## Brush size boxes ######
-        pen_btn.color = color
-        pen_btn.draw_rect(frame)
-        cv2.rectangle(frame, (pen_btn.x, pen_btn.y), (pen_btn.x + pen_btn.w, pen_btn.y + pen_btn.h), (0, 0, 0),
-                      2)
+        # Draw the pen size bar
+        pen_size_bar_x = 1180
+        pen_size_bar_y = 0
+        pen_size_bar_width = 100
+        pen_size_bar_height = 600
+        pen_size_bar_color = (50, 50, 50)
 
-        for pen in pens:
-            pen.draw_rect(frame)
-            cv2.rectangle(frame, (pen.x, pen.y), (pen.x + pen.w, pen.y + pen.h), (0, 0, 0), 2)
+        # Calculate the current pen size based on finger position
+        if x >= pen_size_bar_x and x <= pen_size_bar_x + pen_size_bar_width:
+            progress = (y - pen_size_bar_y) / pen_size_bar_height
+            brush_size = int(progress * 20) + 5  # Adjust the pen size range as needed
+
+        # Draw pen size progress bar
+        cv2.rectangle(frame, (pen_size_bar_x, pen_size_bar_y), (pen_size_bar_x + pen_size_bar_width, pen_size_bar_y + pen_size_bar_height), pen_size_bar_color, -1)
+        cv2.rectangle(frame, (pen_size_bar_x, pen_size_bar_y), (pen_size_bar_x + pen_size_bar_width, int(pen_size_bar_y + pen_size_bar_height * brush_size / 25)), (0, 255, 0), -1)  # Highlight the selected pen size based on brush_size
+
+        # Display current pen size value
+        pen_size_text = f"Pen Size: {brush_size}"
+        cv2.putText(frame, pen_size_text, (pen_size_bar_x, pen_size_bar_y + pen_size_bar_height + 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
 
         cv2.imshow('video', frame)
         k = cv2.waitKey(1)
         if k == ord('q'):
             break
+
     cap.release()
     cv2.destroyAllWindows()
 

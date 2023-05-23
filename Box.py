@@ -2,22 +2,20 @@ import cv2
 import numpy as np
 
 class Box:
-    def __init__(self, x, y, w, h, color, text='', alpha=0.5):
+    def __init__(self, x, y, w, h, color, text=''):
         self.x = x
         self.y = y
         self.w = w
         self.h = h
         self.color = color
         self.text = text
-        self.alpha = alpha
 
     def draw_rect(self, img, text_color=(255, 255, 255), font_face=cv2.FONT_HERSHEY_SIMPLEX, font_scale=0.8,
                   thickness=2):
-        alpha = self.alpha
         bg_rec = img[self.y: self.y + self.h, self.x: self.x + self.w]
         white_rect = np.ones(bg_rec.shape, dtype=np.uint8)
         white_rect[:] = self.color
-        res = cv2.addWeighted(bg_rec, alpha, white_rect, 1 - alpha, 1.0)
+        res = cv2.addWeighted(bg_rec, 0, white_rect, 1, 1.0)
 
         img[self.y: self.y + self.h, self.x: self.x + self.w] = res
 
