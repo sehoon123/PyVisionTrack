@@ -82,11 +82,7 @@ PyWhiteboard is a Python-based application that enables you to use your hand ges
 2. [Youtube](https://youtu.be/01sAkU_NvOY?list=LL)
     - freeCodeCamp.org Youtube channel
 
-3. [Youtube](https://youtu.be/ZiwZaAVbXQo?list=LL)
-    - Murtaza's Workshop Youtube channel
-    - Get Idea from this video
-
-4. [ChatGPT](https://chat.openai.com/)
+3. [ChatGPT](https://chat.openai.com/)
     - OpenAI's GPT-4 powered chatbot
 
 
