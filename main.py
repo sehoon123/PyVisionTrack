@@ -2,14 +2,15 @@ import cv2
 import numpy as np
 from Box import Box
 from GestureRecognizer import GestureRecognizer
-
+from FaceLandmarkDetector import FaceLandmarkDetector
 
 def run_whiteboard():
     # Initialize the gesture recognizer
     recognizer = GestureRecognizer(detection_confidence=0.8)
+    face_detector = FaceLandmarkDetector()
 
     # Initialize the video capture object
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(1)
     cap.set(3, 1280)
     cap.set(4, 720)
 
