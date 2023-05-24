@@ -116,6 +116,21 @@ def run_whiteboard():
         pen_size_text = f"Pen Size: {brush_size}"
         cv2.putText(frame, pen_size_text, (pen_size_bar_x, pen_size_bar_y + pen_size_bar_height + 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
 
+        # Detect landmarks on the face
+        landmarks = face_detector.detect_faces(frame, draw=True)
+        if landmarks:
+            # Check if mouth is open
+            if face_detector.is_mouth_open(landmarks):
+                cv2.putText(frame, "Mouth Open", (550, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+            else:
+                cv2.putText(frame, "Mouth Closed", (550, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+
+
+            # if face_detector.is_both_eye_open(landmarks):
+            #     cv2.putText(frame, "Both Eye Open", (550, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+            # else:
+            #     cv2.putText(frame, "One Eye Open", (550, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+
         cv2.imshow('video', frame)
         k = cv2.waitKey(1)
         if k == ord('q'):
