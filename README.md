@@ -8,7 +8,8 @@ PyWhiteboard is a Python-based application that enables you to use your hand ges
 - Clear canvas when only middle finger is up
 
 ## Video Demo
-[Youtube](https://www.youtube.com/embed/bjYpP-FvfRE)
+[DEMO1](https://www.youtube.com/embed/bjYpP-FvfRE)
+[DEMO2](https://youtu.be/Ezc3O-r4Ovg)
 
 ---
 
@@ -18,6 +19,8 @@ PyWhiteboard is a Python-based application that enables you to use your hand ges
 - Adjustable brush size: Allows you to adjust the brush size based on the position of your finger, providing control over the thickness of your drawings.
 - Clear canvas option: Provides a clear canvas button to reset the whiteboard and start fresh.
 - Real-time drawing visualization: Displays your drawings and hand movements in real-time, creating an interactive and engaging drawing experience.
+- Recognize user faces: Recognizes user faces and draws a avatar around the face.
+- Recognize user mouth: Recognizes user mouth and draws a avatar around the mouth.
 
 ---
 ## Week 1: Project Setup and Basic Functionality
