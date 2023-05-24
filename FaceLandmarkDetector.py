@@ -47,9 +47,7 @@ class FaceLandmarkDetector:
     def is_both_eye_open(self, landmarks):
         if len(landmarks) >= 68:
             left_eye_height = landmarks[145].y - landmarks[159].y
-            print("left eye height: ", left_eye_height)
             right_eye_height = landmarks[374].y - landmarks[386].y
-            print("right eye height: ", right_eye_height)
             if left_eye_height > 0.03 and right_eye_height > 0.03:
                 return True
             else:

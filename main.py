@@ -120,10 +120,21 @@ def run_whiteboard():
         landmarks = face_detector.detect_faces(frame, draw=True)
         if landmarks:
             # Check if mouth is open
+            eye_offset = 50
+            landmark = landmarks[1]
+
             if face_detector.is_mouth_open(landmarks):
                 cv2.putText(frame, "Mouth Open", (550, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+                cv2.circle(frame, (int(landmark.x * 1280), int(landmark.y * 720)-50), 200, (0,255,255), -1)
+                cv2.circle(frame, (int(landmark.x * 1280) - eye_offset, int(landmark.y * 720)-50 - eye_offset), 20, (0,0,0), -1)
+                cv2.circle(frame, (int(landmark.x * 1280) + eye_offset, int(landmark.y * 720)-50 - eye_offset), 20, (0,0,0), -1)
+                cv2.rectangle(frame, (int(landmark.x * 1280)+50, int(landmark.y * 720)-10), (int(landmark.x * 1280)-50, int(landmark.y * 720)+80), (0,0,255), -1)
             else:
                 cv2.putText(frame, "Mouth Closed", (550, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+                cv2.circle(frame, (int(landmark.x * 1280), int(landmark.y * 720)-50), 200, (0,255,255), -1)
+                cv2.circle(frame, (int(landmark.x * 1280) - eye_offset, int(landmark.y * 720)-50 - eye_offset), 20, (0,0,0), -1)
+                cv2.circle(frame, (int(landmark.x * 1280) + eye_offset, int(landmark.y * 720)-50 - eye_offset), 20, (0,0,0), -1)
+                cv2.rectangle(frame, (int(landmark.x * 1280)+50, int(landmark.y * 720)-10), (int(landmark.x * 1280)-50, int(landmark.y * 720)+20), (0,0,255), -1)
 
 
             # if face_detector.is_both_eye_open(landmarks):
