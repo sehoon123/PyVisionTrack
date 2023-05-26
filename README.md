@@ -7,16 +7,18 @@ PyWhiteboard is a Python-based application that enables you to use your hand ges
 - Select button with both index and middle finger
 - Clear canvas when only middle finger is up
 
+## Screenshots
+![Screenshot](./Screenshot.png)
+
 ## Video Demo
-[DEMO1](https://www.youtube.com/embed/bjYpP-FvfRE)  
-[DEMO2](https://youtu.be/Ezc3O-r4Ovg)  
-[DEMO3](https://youtu.be/Z8NrAGErYVM)  
+[DEMO](https://youtu.be/de6aoGfzDLg)
 
 ---
 
 ## Features
 - Hand gesture recognition: Tracks your hand movements in real-time using computer vision techniques and recognizes gestures for drawing on the whiteboard.  
 - Multi-color drawing: Offers a variety of colors to choose from for drawing on the canvas, including red, blue, green, yellow, and an eraser option.  
+- Multi-hand drawing: Allows you to draw with both hands at the same time, providing a more natural drawing experience.
 - Adjustable brush size: Allows you to adjust the brush size based on the position of your finger, providing control over the thickness of your drawings.
 - Clear canvas option: Provides a clear canvas button to reset the whiteboard and start fresh.
 - Real-time drawing visualization: Displays your drawings and hand movements in real-time, creating an interactive and engaging drawing experience.
@@ -32,9 +34,3 @@ PyWhiteboard is a Python-based application that enables you to use your hand ges
     
 2. [Youtube](https://youtu.be/01sAkU_NvOY?list=LL)
     - freeCodeCamp.org Youtube channel
-
-3. [ChatGPT](https://chat.openai.com/)
-    - OpenAI's GPT-4 powered chatbot
-
-
-
