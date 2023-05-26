@@ -10,6 +10,7 @@ PyWhiteboard is a Python-based application that enables you to use your hand ges
 ## Video Demo
 [DEMO1](https://www.youtube.com/embed/bjYpP-FvfRE)  
 [DEMO2](https://youtu.be/Ezc3O-r4Ovg)  
+[DEMO3](https://youtu.be/Z8NrAGErYVM)  
 
 ---
 
