@@ -138,14 +138,14 @@ def run_whiteboard():
                 cv2.circle(frame, (int(landmark.x * 1280) - eye_offset, int(landmark.y * 720) - 50 - eye_offset), 20, (0, 0, 0), -1)
             else:
                 cv2.putText(frame, "Left Eye Closed", (550, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-                cv2.rectangle(frame, (int(landmark.x * 1280) - eye_offset + 10, int(landmark.y * 720) - 50 - eye_offset + 10), (int(landmark.x * 1280) - eye_offset - 80, int(landmark.y * 720) - 50 - eye_offset - 10), (0, 0, 0), -1)
+                cv2.rectangle(frame, (int(landmark.x * 1280) - eye_offset + 50, int(landmark.y * 720) - 50 - eye_offset + 10), (int(landmark.x * 1280) - eye_offset - 40, int(landmark.y * 720) - 50 - eye_offset - 10), (0, 0, 0), -1)
 
             if face_detector.is_right_eye_open(landmarks):
                 cv2.putText(frame, "Right Eye Open", (550, 150), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
                 cv2.circle(frame, (int(landmark.x * 1280) + eye_offset, int(landmark.y * 720) - 50 - eye_offset), 20, (0, 0, 0), -1)
             else:
                 cv2.putText(frame, "Right Eye Closed", (550, 150), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-                cv2.rectangle(frame, (int(landmark.x * 1280) + eye_offset + 10, int(landmark.y * 720) - 50 - eye_offset + 10), (int(landmark.x * 1280) + eye_offset - 80, int(landmark.y * 720) - 50 - eye_offset - 10), (0, 0, 0), -1)
+                cv2.rectangle(frame, (int(landmark.x * 1280) + eye_offset + 50, int(landmark.y * 720) - 50 - eye_offset + 10), (int(landmark.x * 1280) + eye_offset - 40, int(landmark.y * 720) - 50 - eye_offset - 10), (0, 0, 0), -1)
 
         cv2.imshow('video', frame)
         k = cv2.waitKey(1)
