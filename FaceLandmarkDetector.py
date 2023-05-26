@@ -3,14 +3,14 @@ import mediapipe as mp
 
 
 class FaceLandmarkDetector:
-    def __init__(self, detection_confidence=0.8, tracking_confidence=0.7, num_faces=2, threshold=0.06):
+    def __init__(self, detection_confidence=0.8, tracking_confidence=0.7, num_faces=2):
         self.cap = None
         self.face_mesh = mp.solutions.face_mesh.FaceMesh(
             min_detection_confidence=detection_confidence,
             min_tracking_confidence=tracking_confidence,
             max_num_faces=num_faces
         )
-        self.threshold = threshold
+
 
     def detect_faces(self, image, draw=True):
         landmarks = []
@@ -24,7 +24,7 @@ class FaceLandmarkDetector:
         # Check if landmarks are detected
         if results.multi_face_landmarks:
             for face_landmarks in results.multi_face_landmarks:
-                for i in range(0, 468):
+                for i in range(0,468):
                     landmarks.append(face_landmarks.landmark[i])
 
                     if draw:
@@ -36,10 +36,12 @@ class FaceLandmarkDetector:
         # Return the landmarks and the image with drawn landmarks
         return landmarks
 
+
+
     def is_mouth_open(self, landmarks):
         if len(landmarks) >= 68:
-            mouth_height = landmarks[17].y - landmarks[13].y
-            if mouth_height > self.threshold:
+            mouth_height = landmarks[14].y - landmarks[0].y
+            if mouth_height > 2*(landmarks[8].y - landmarks[9].y):
                 return True
             else:
                 return False
@@ -47,7 +49,7 @@ class FaceLandmarkDetector:
     def is_left_eye_open(self, landmarks):
         if len(landmarks) >= 68:
             left_eye_height = landmarks[145].y - landmarks[159].y
-            if left_eye_height > 0.023:
+            if left_eye_height > (landmarks[8].y - landmarks[9].y):
                 return True
             else:
                 return False
@@ -55,8 +57,7 @@ class FaceLandmarkDetector:
     def is_right_eye_open(self, landmarks):
         if len(landmarks) >= 68:
             right_eye_height = landmarks[374].y - landmarks[386].y
-            print(right_eye_height)
-            if right_eye_height > 0.023:
+            if right_eye_height > (landmarks[8].y - landmarks[9].y):
                 return True
             else:
                 return False
