@@ -3,7 +3,7 @@ import mediapipe as mp
 
 
 class FaceLandmarkDetector:
-    def __init__(self, detection_confidence=0.85, tracking_confidence=0.8, num_faces=1):
+    def __init__(self, detection_confidence=0.8, tracking_confidence=0.5, num_faces=1):
         self.cap = None
         self.face_mesh = mp.solutions.face_mesh.FaceMesh(
             min_detection_confidence=detection_confidence,
@@ -49,7 +49,7 @@ class FaceLandmarkDetector:
     def is_left_eye_open(self, landmarks):
         if len(landmarks) >= 68:
             left_eye_height = landmarks[145].y - landmarks[159].y
-            if left_eye_height > 0.9*(landmarks[8].y - landmarks[9].y):
+            if left_eye_height > 0.75*(landmarks[8].y - landmarks[9].y):
                 return True
             else:
                 return False
@@ -57,8 +57,7 @@ class FaceLandmarkDetector:
     def is_right_eye_open(self, landmarks):
         if len(landmarks) >= 68:
             right_eye_height = landmarks[374].y - landmarks[386].y
-            print(right_eye_height, (landmarks[8].y - landmarks[9].y))
-            if right_eye_height > 0.9*(landmarks[8].y - landmarks[9].y):
+            if right_eye_height > 0.75*(landmarks[8].y - landmarks[9].y):
                 return True
             else:
                 return False
